@@ -1,0 +1,80 @@
+{% extends "takeout/vendor_base.html" %}
+
+{% block title %} Account Center {% endblock %}
+
+{% block content %}
+
+  <div class="valign-wrapper row login-box">
+    <div class="col card hoverable s10 pull-s1 m6 pull-m3 l4 pull-l4">
+      <form enctype="multipart/form-data" method="post" class="col s12">
+        <div class="card-content">
+          <span class="card-title center-align">Account Center</span>
+          <div class="row center-align">
+            <div class="text col s12">{{ msg }}</div>
+            <div class="text col s12">{{ user_form.errors }}</div>
+            <div class="text col s12">{{ profile_form.errors }}</div>
+            <img src = "{% url 'profilePic' user.id %}" class="col s12" />
+          </div>
+          <div class="row center-align">
+            <div class="file-field input-field col s12 ">
+              <div class="btn red">
+                <span>File</span>
+                {{ profile_form.profile_pic }}
+              </div>
+              <div class="file-path-wrapper">
+                <input class="file-path validate" type="text">
+              </div>
+            </div>
+          </div>
+          <div class="row center-align">
+            <div class="input-field col s12 ">
+              <input id="old-password" type="password" name="old-password" class="validate">
+              <label for="old-password">Old Password</label>
+            </div>
+          </div>
+          <div class="row center-align">
+            <div class="input-field col s12">
+              <input id="new-password" type="password" name="new-password" class="validate">
+              <label for="new-password">New Password</label>
+            </div>
+          </div>
+          <div class="row center-align">
+            <div class="input-field col s12">
+              {{ user_form.email.label_tag }}
+              {{ user_form.email }}
+            </div>
+          </div>
+          <div class="row center-align">
+            <div class="input-field col s12">
+              {{ profile_form.phone.label_tag }}
+              {{ profile_form.phone }}
+            </div>
+          </div>
+          <div class="row center-align">
+            <div class="input-field col s12">
+              {{ profile_form.parking_location.label_tag }}
+              {{ profile_form.parking_location }}
+            </div>
+          </div>
+          <div class="row center-align">
+            <div class="input-field col s12">
+              {{ profile_form.time_slot.label_tag }}
+              {{ profile_form.time_slot }}
+            </div>
+          </div>
+          <div class="row center-align">
+            <div class="input-field col s12">
+              {{ profile_form.car.label_tag }}
+              {{ profile_form.car }}
+            </div>
+          </div>
+          <div class="card-action right-align">
+            <button type="submit" class="btn red accent-2 waves-effect waves-light">Update</button>
+            <a href="{% url 'logout' %}" class="btn red accent-2 waves-effect waves-light">Log Out</a>
+          </div>
+        </div>
+        {% csrf_token %}
+      </form>
+    </div>
+  </div>
+{% endblock %}

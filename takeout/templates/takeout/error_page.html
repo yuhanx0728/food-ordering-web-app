@@ -1,0 +1,18 @@
+{% extends "takeout/vendor_base.html" %}
+
+{% block title %} Confirm Error Page {% endblock %}
+
+{% block content %}
+
+  <div class="row">
+    <div class="col s6 push-s3 center-align">
+      <div class="card red center-align">
+        <div class="card-content white-text">
+          <span class="card-title">Order Already Confirmed</span>
+          <p>This order is already confirmed. You cannot confirm an order for more than once</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
