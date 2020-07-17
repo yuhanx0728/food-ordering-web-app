@@ -1,4 +1,5 @@
 import csv, os
+from datetime import date, timedelta
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'webapps.settings'
 
@@ -7,7 +8,7 @@ django.setup()
 
 from takeout.models import *
 from django.contrib.auth.models import User
-from django.utils.dateparse import parse_datetime, parse_date
+from django.utils.dateparse import parse_datetime
 
 def get_meal_pic(meal_name):
     if meal_name == "A":
@@ -79,14 +80,14 @@ with open('data/VendorMeal.csv') as f:
             drink=row[5],
             meal_type=row[6],
             meal_name=row[7],
-            date=row[8],
+            date=date.today() - timedelta(days=int(row[8])),
             picture=get_meal_pic(row[7])
             )
-        meal.date = parse_date(row[8])
+        meal.date = date.today() - timedelta(days=int(row[8]))
         meal.save()
         print("VENDOR MEAL: ", meal)
         if created:
-	        print("Vendor Meal Created! vendor meal =", row[0], row[8])
+	        print("Vendor Meal Created! vendor meal =", row[0], meal.date)
 
 
 # with open('data/CustomerMeal.csv') as f:

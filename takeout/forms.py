@@ -1,5 +1,4 @@
 from django import forms
-
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 from takeout.models import CustomerProfile, VendorProfile, VendorMeal
@@ -30,7 +29,6 @@ class CustomerLoginForm(forms.Form):
 
         return cleaned_data
 
-
 class VendorLoginForm(forms.Form):
     username = forms.CharField(max_length=20,
                                widget=forms.TextInput(
@@ -53,7 +51,6 @@ class VendorLoginForm(forms.Form):
             raise forms.ValidationError("Invalid username/password")
 
         return cleaned_data
-
 
 class CustomerRegistrationForm(forms.Form):
     last_name = forms.CharField(max_length=20,
@@ -113,7 +110,6 @@ class CustomerRegistrationForm(forms.Form):
             raise forms.ValidationError("Username is already taken.")
 
         return username
-
 
 class VendorRegistrationForm(forms.Form):
     phone = forms.CharField(max_length=12,

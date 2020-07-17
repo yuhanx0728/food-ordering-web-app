@@ -17,7 +17,6 @@ from django.http import HttpResponse, Http404
 # Used to send mail from within Django
 from django.core.mail import send_mail
 
-
 @login_required
 def home_vendor(request):
     if not vendor_has_permission(request.user):
@@ -56,7 +55,6 @@ def home_vendor(request):
     context['vendor'] = vendor_profile
     return render(request, 'takeout/vendor_main.html', context)
 
-
 @login_required
 def home_customer(request):
     if not customer_has_permission(request.user):
@@ -66,7 +64,6 @@ def home_customer(request):
     context['vendors'] = VendorProfile.objects.all()
     context['meals'] = VendorMeal.objects.filter(date=timezone.now())
     return render(request, 'takeout/customer_main.html', context)
-
 
 @login_required
 def menu_detail(request, vendor_id):
@@ -108,8 +105,6 @@ def profilePic(request, id):
             raise Http404
         return HttpResponse(customer.profile_pic, content_type=customer.content_type)
 
-
-
 @login_required
 def add_to_cart(request, vendor_id, meal_id):
     if not customer_has_permission(request.user):
@@ -143,7 +138,6 @@ def add_to_cart(request, vendor_id, meal_id):
         new_meal.save()
 
     return redirect(menu_detail, vendor_id=vendor_id)
-
 
 @login_required
 def vendor_profile(request):
@@ -248,7 +242,6 @@ def vendor_profile(request):
     }
     return render(request, 'takeout/vendor_profile.html', context)
 
-
 @login_required
 def shopping_cart(request):
     if not customer_has_permission(request.user):
@@ -292,7 +285,6 @@ def shopping_cart(request):
 
     return render(request, 'takeout/shopping_cart.html', context)
 
-
 @login_required
 def orders_history(request):
     if not customer_has_permission(request.user):
@@ -314,7 +306,6 @@ def orders_history(request):
         return render(request, 'takeout/message.html', context)
 
     return render(request, 'takeout/customer_history.html', context)
-
 
 @login_required
 def charge(request):
@@ -346,7 +337,6 @@ def charge(request):
               recipient_list=[request.user.email])
     return render(request, 'takeout/order_success.html')
 
-
 @login_required
 def qrcode_page(request, order, token):
     context = {}
@@ -358,11 +348,9 @@ def qrcode_page(request, order, token):
     context['order'] = "http://3.19.30.158/takeout/pickup_confirmation/" + str(order)
     return render(request, 'takeout/qrcode_page.html', context)
 
-
 @login_required
 def order_success(request):
     return render(request, 'takeout/order_success.html')
-
 
 @login_required
 def customer_profile(request):
@@ -466,7 +454,6 @@ def customer_profile(request):
     }
     return render(request, 'takeout/customer_profile.html', context)
 
-
 @login_required
 def pickup_confirmation(request, order):
     context = {}
@@ -491,7 +478,6 @@ def pickup_confirmation(request, order):
 @login_required
 def error_page(request):
     return render(request, 'takeout/error_page.html')
-
 
 def customer_register_action(request):
     context = {}
@@ -529,7 +515,6 @@ def customer_register_action(request):
 
     return redirect(reverse('home_customer'))
 
-
 def vendor_register_action(request):
     context = {}
 
@@ -566,7 +551,6 @@ def vendor_register_action(request):
     login(request, new_user)
 
     return redirect(reverse('home_vendor'))
-
 
 def login_action(request):
     context = {}
@@ -620,11 +604,9 @@ def login_action(request):
         return redirect(reverse('home_customer'))
     return redirect(reverse('home_vendor'))
 
-
 def logout_action(request):
     logout(request)
     return redirect(reverse('login'))
-
 
 @login_required
 def add_meal(request):
@@ -667,14 +649,12 @@ def delete_meal(request, id):
     context = {'meals': meals, 'form': VendorMealForm(), 'vendor':curr_vendor}
     return render(request, 'takeout/vendor_menu.html', context)
 
-
 def customer_has_permission(user):
     try:
         customer = CustomerProfile.objects.get(customer=user)
         return True
     except CustomerProfile.DoesNotExist:
         return False
-
 
 def vendor_has_permission(user):
     try:

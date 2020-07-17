@@ -1,7 +1,6 @@
 import pygal
 from django.utils import timezone
 
-
 class MealPieChart:
     def __init__(self, meals):
         self.chart = pygal.Pie()
@@ -21,7 +20,6 @@ class MealPieChart:
         for key, value in chart_data.items():
             self.chart.add(key, value)
         return self.chart.render(is_unicode=True)
-
 
 class SalesTrendChart:
     def __init__(self, meals):
@@ -58,7 +56,6 @@ class SalesTrendChart:
         self.chart.x_labels = self.get_data()[0]
         self.chart.add("Daily Revenue", self.get_data()[1])
         return self.chart.render(is_unicode=True)
-
 
 class StackBarChart:
     def __init__(self, meals):

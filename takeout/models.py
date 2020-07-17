@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-
 class CustomerProfile(models.Model):
     customer = models.OneToOneField(User,
                                     default=None, on_delete=models.PROTECT,
@@ -14,7 +13,6 @@ class CustomerProfile(models.Model):
     def __str__(self):
         return 'Customer Profile for: ' + self.customer.first_name + ' ' + \
                self.customer.last_name + ' , andrew ID is: ' + self.andrew_id
-
 
 class VendorProfile(models.Model):
     vendor = models.OneToOneField(User, default=None, on_delete=models.PROTECT,
@@ -31,7 +29,6 @@ class VendorProfile(models.Model):
 
     def __str__(self):
         return 'Vendor Profile for: ' + self.company_name
-
 
 class Order(models.Model):
     total_amount = models.IntegerField()
@@ -67,7 +64,6 @@ class VendorMeal(models.Model):
                ' , number ordered is: ' + str(self.number_ordered) + \
                ' , drink is: ' + self.drink + \
                ' , date is: ' + str(self.date)
-
 
 class CustomerMeal(models.Model):
     picked_up = models.BooleanField(default=False)

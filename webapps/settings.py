@@ -26,7 +26,7 @@ SECRET_KEY = 'vi47@7md)j-!h_c+ue16x#r$ey7y)x6g13ne_yg^$w8k6c$@cb'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['3.19.30.158', '127.0.0.1', ]
+ALLOWED_HOSTS = ['127.0.0.1', ]
 
 
 # Application definition
@@ -81,11 +81,14 @@ WSGI_APPLICATION = 'webapps.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'test',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+        'USER': 'root',
+        'PASSWORD': '',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
