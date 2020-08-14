@@ -1,33 +1,25 @@
+# Project 
+
+This is a final project for the course 17-437, Web Application Development in CMU, even though the original idea comes from my [hackathon project](https://devpost.com/software/wai-mai-dpq4ou).
+
+We built a Django web app to sell/order food and arrange pickups between students and food vendors.
+
 # Tech Stack
-Django, Python, MySQL, AWS
+Django, PostgreSQL, Materialize CSS, AWS EC2
 
-# Todo
-- [x] generate vendor meals' date dynamically
-- [ ] connect to MySQL
-- [ ] prevent an order orders from different restaurants & time
-- [ ] change profile pics/meal pics
-- [ ] get more variety in meal names/pics
-
-# Food Ordering Web App
-
-This is a final project for the course 17-437, Web Application Development in CMU.
-
-The original idea comes from a [hackathon project](https://devpost.com/software/wai-mai-dpq4ou).
-
-We improved on the originial idea and built a full-fledge Django web app for students to order food and arrange pickups at selected locations on campus. We also created a suite of analytics features for vendors, by integrating multiple chart APIs.
-And most importantly, we tested and debugged the website for security loopholes, and deployed it on AWS as part of the project demo.
-
-## How to bulk create dummy data (and run the app locally)
-
+## How to run this web app locally
+Clone this repository and do the following:
 ```
 rm db.sqlite3
 rm -rf takeout/migrations/0*
 python3 manage.py makemigrations
 python3 manage.py migrate
-python3 create_data.py
+python3 create_data.py // bulk create dummy data
 python3 manage.py runserver
 ```
+Refer to `data/User.csv` to log in as either a vendor or a customer.
 
-For usernames, check out data/User.csv(both vendors and customers).
-Passwords for all users generated default to "password", for demo.
-Redo the whole process every time you bulk create dummy data or it will show errors that multiple instances of the same objects are created.
+## Todo in the future:
+- [ ] prevent an order orders from different restaurants & time
+- [ ] change profile pics/meal pics
+- [ ] get more variety in meal names/pics
