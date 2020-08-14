@@ -1,4 +1,4 @@
-# Project Description
+# Project description
 
 We built a Django web app to sell/order food and arrange pickups between students and food vendors.
 
